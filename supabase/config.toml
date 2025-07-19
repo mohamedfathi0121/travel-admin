@@ -1,0 +1,4 @@
+
+[functions.update-company-status]
+entrypoint = "./functions/update-company-status/index.js"
+verify_jwt = false

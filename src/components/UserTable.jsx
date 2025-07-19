@@ -17,7 +17,7 @@ const UserTable = ({ users }) => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.map(user => (
             <tr key={user.id} className="border-t border-input">
               <td className="p-2">{user.c_name}</td>
               <td className="p-2">{user.contact_email}</td>
@@ -38,20 +38,26 @@ const UserTable = ({ users }) => {
               <td className="p-2">
                 <span
                   className={`px-2 py-1 rounded text-xs font-semibold ${
-                    user.status === "approved"
-                      ? "bg-green-100 text-green-700"
-                      : user.status === "pending"
+                    user.status === "pending"
                       ? "bg-yellow-100 text-yellow-600"
-                      : "bg-red-100 text-red-600"
+                      : user.status === "approved" && user.is_blocked === false
+                      ? "bg-green-100 text-green-700"
+                      : user.status === "approved" && user.is_blocked === true
+                      ? "bg-red-100 text-red-600"
+                      : "bg-gray-100 text-gray-600"
                   }`}
                 >
-                  {user.status}
+                  {user.status === "approved" && user.is_blocked === false
+                    ? "active"
+                    : user.status === "approved" && user.is_blocked === true
+                    ? "Blocked"
+                    : "Pending"}
                 </span>
               </td>
               <td className="p-2">
                 <Link
-                  to={`/users/${user.id}`}
-                  className="text-button-primary underline hover:text-button-primary-hover transition"
+                  to={`/companies/${user.id}`}
+                  className="text-button-primary underline hover:text-button-primary-hover transition "
                 >
                   View Profile
                 </Link>
@@ -63,7 +69,7 @@ const UserTable = ({ users }) => {
 
       {/* ✅ Card View for Mobile */}
       <div className="md:hidden space-y-4">
-        {users.map((user) => (
+        {users.map(user => (
           <div
             key={user.id}
             className="border border-input rounded-lg p-4 bg-white shadow-sm"
@@ -99,21 +105,27 @@ const UserTable = ({ users }) => {
                 <span className="font-medium">Status:</span>{" "}
                 <span
                   className={`px-2 py-0.5 rounded text-xs font-semibold ${
-                    user.status === "approved"
-                      ? "bg-green-100 text-green-700"
-                      : user.status === "pending"
+                    user.status === "pending"
                       ? "bg-yellow-100 text-yellow-600"
-                      : "bg-red-100 text-red-600"
+                      : user.status === "approved" && user.is_blocked === false
+                      ? "bg-green-100 text-green-700"
+                      : user.status === "approved" && user.is_blocked === true
+                      ? "bg-red-100 text-red-600"
+                      : "bg-gray-100 text-gray-600"
                   }`}
                 >
-                  {user.status}
+                  {user.status === "approved" && user.is_blocked === false
+                    ? "active"
+                    : user.status === "approved" && user.is_blocked === true
+                    ? "Blocked"
+                    : "Pending"}
                 </span>
               </div>
             </div>
 
             <div className="mt-3">
               <Link
-                to={`/users/${user.id}`}
+                to={`/companies/${user.id}`}
                 className="text-button-primary underline hover:text-button-primary-hover text-sm"
               >
                 View Profile

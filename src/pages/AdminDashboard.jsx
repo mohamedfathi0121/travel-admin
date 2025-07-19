@@ -41,25 +41,18 @@ const AdminDashboard = () => {
           .from("companies")
           .select("*", { count: "exact", head: true })
           .eq("status", "pending"); // last 30 days
-        const { count: activeCompanies } = await supabase
-          .from("profiles")
-          .select("id, role, is_blocked, companies!inner(status)", {
-            count: "exact",
-            head: true,
-          })
-          .eq("role", "company_user")
+       
+          const { count: activeCompanies } = await supabase
+          .from("companies")
+          .select("*", { count: "exact", head: true })
           .eq("is_blocked", false)
-          .eq("companies.status", "approved");
+          .eq("status", "approved");
 
         const { count: blockedCompanies } = await supabase
-          .from("profiles")
-          .select("id, role, is_blocked, companies!inner(status)", {
-            count: "exact",
-            head: true,
-          })
-          .eq("role", "company_user")
+      .from("companies")
+          .select("*", { count: "exact", head: true })
           .eq("is_blocked", true)
-          .eq("companies.status", "approved");
+          .eq("status", "approved");
 
         // 3. Customers
         const { count: totalCustomers } = await supabase
@@ -133,11 +126,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Companies */}
-      <Link
-        to="/companies"
-        state={{ status: "blocked" }}
-        className="w-full max-w-3xl mb-6"
-      >
+   
         <div className="rounded-lg shadow-lg shadow-text-secondary p-6 mb-6 w-full max-w-3xl">
           <h3 className="text-lg font-bold mb-3 text-center">Companies</h3>
           <div className="flex flex-wrap justify-center gap-4">
@@ -176,7 +165,7 @@ const AdminDashboard = () => {
 
           </div>
         </div>
-      </Link>
+      
       {/* Customers */}
       <div className="rounded-lg shadow-lg shadow-text-secondary p-6 mb-6 w-full max-w-3xl">
         <h3 className="text-lg font-bold mb-3 text-center">Customers</h3>

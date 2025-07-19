@@ -12,6 +12,7 @@ import Layout from "./components/layout/Layout";
 import ChatDashboard from "./pages/ChatDashboard";
 import CompanyPage from "./pages/CompanyPage";
 import NotFoundPage from "./pages/NotFound";
+import CompanyProfile from "./pages/CompanyProfile";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
                   <Route index element={<AdminDashboard />} />
                   <Route path="chat-dashboard" element={<ChatDashboard />} />
                   <Route path="companies" element={<CompanyPage />} />
+
+                  <Route path="/companies/:id" element={<CompanyProfile />} />
                   <Route path="users" element={<UsersPage />} />
                   <Route path="profile" element={<UserProfile />} />
                 </Route>
