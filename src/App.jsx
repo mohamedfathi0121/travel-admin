@@ -22,11 +22,12 @@ function App() {
           <AuthProvider>
             <Routes>
               {/* Public Route */}
-              <Route path="/login" element={<LoginPage />} />
 
               {/* Protected Routes */}
-              <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Layout />}>
+                <Route path="/login" element={<LoginPage />} />
+
+                <Route element={<ProtectedRoute />}>
                   <Route index element={<AdminDashboard />} />
                   <Route path="chat-dashboard" element={<ChatDashboard />} />
                   <Route path="companies" element={<CompanyPage />} />

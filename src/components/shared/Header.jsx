@@ -13,26 +13,22 @@ export default function Header() {
   return (
     <header className="w-full  bg-background shadow-md z-50 relative border-b border-gray-300">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 md:px-8 py-4">
-        <Link
-          to="/"
-          className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap"
-        >
+        <h1 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
           AdventureCo
-        </Link>
+        </h1>
         <ul className="flex w-100 justify-start gap-4 hidden md:flex space-x-6 ml-6 text-sm font-medium text-text-primary">
-          <li className="display flex items-center flex-column">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? activeClassName : "hover:text-button-primary"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-         
           {user && (
             <>
+              <li className="display flex items-center flex-column">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? activeClassName : "hover:text-button-primary"
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="companies"
@@ -40,7 +36,7 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
-                   companies
+                  companies
                 </NavLink>
               </li>
               <li>
@@ -50,7 +46,7 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
-                 customers
+                  customers
                 </NavLink>
               </li>
               <li>
@@ -60,10 +56,9 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
-                 chats
+                  chats
                 </NavLink>
               </li>
-              
             </>
           )}
         </ul>
@@ -129,7 +124,7 @@ export default function Header() {
               </NavLink>
             </>
           )}
-     
+
           {!user && (
             <>
               <NavLink
@@ -153,7 +148,7 @@ export default function Header() {
           )}
 
           <ThemeSwitcher />
-               {user && (
+          {user && (
             <button
               onClick={() => {
                 signOut();
