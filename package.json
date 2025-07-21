@@ -11,8 +11,14 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+<<<<<<< HEAD
+=======
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
+>>>>>>> 1706a1e3e0f2e06c0637cb92a0c1c829e09d6864
     "@supabase/supabase-js": "^2.51.0",
     "@tailwindcss/vite": "^4.1.11",
+    "dayjs": "^1.11.13",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.59.0",
@@ -27,6 +33,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
+    "copyfiles": "^2.4.1",
     "eslint": "^9.29.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
