@@ -13,6 +13,7 @@ const UserTable = ({ users }) => {
             <th className="p-2">Registration Date</th>
             <th className="p-2">Logo</th>
             <th className="p-2">Status</th>
+            <th className="p-2">Role</th>
             <th className="p-2">Action</th>
           </tr>
         </thead>

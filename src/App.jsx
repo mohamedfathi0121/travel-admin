@@ -17,32 +17,16 @@ import CompanyProfile from "./pages/CompanyProfile";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <ThemeProvider>
-          <AuthProvider>
-            <Routes>
-              {/* Public Route */}
-
-              {/* Protected Routes */}
-              <Route path="/" element={<Layout />}>
-                <Route path="/login" element={<LoginPage />} />
-
-                <Route element={<ProtectedRoute />}>
-                  <Route index element={<AdminDashboard />} />
-                  <Route path="chat-dashboard" element={<ChatDashboard />} />
-                  <Route path="companies" element={<CompanyPage />} />
-
-                  <Route path="/companies/:id" element={<CompanyProfile />} />
-                  <Route path="users" element={<UsersPage />} />
-                  <Route path="profile" element={<UserProfile />} />
-                </Route>
-              </Route>
-              <Route path="/*" element={<NotFoundPage />} />
-            </Routes>
-          </AuthProvider>
-          <Toaster />
-        </ThemeProvider>
-      </BrowserRouter>
+    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/users" />} /> 
+        <Route path="/users" element={<UsersPage />} />
+        <Route path="/users/:id" element={<UserProfile />} />
+        <Route path="/chat/:id" element={<ChatPage />} />
+      </Routes>
+    </BrowserRouter>
+    <Toaster />
     </>
   );
 }
