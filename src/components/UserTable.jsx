@@ -20,12 +20,16 @@ const UserTable = ({ users }) => {
         <tbody>
           {users.map(user => (
             <tr key={user.id} className="border-t border-input">
-              <td className="p-2">{user.name}</td>
-              <td className="p-2">{user.email}</td>
-              <td className="p-2">{user.date}</td>
+              <td className="p-2">{user.c_name}</td>
+              <td className="p-2">{user.contact_email}</td>
+              <td className="p-2">{formatDate(user.created_at) || "N/A"}</td>
               <td className="p-2">
-                {user.photo ? (
-                  <img src={user.photo} alt="profile" className="w-10 h-10 rounded-full object-cover" />
+                {user.logo_url ? (
+                  <img
+                    src={user.logo_url}
+                    alt="logo"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
                     {user.c_name.charAt(0).toUpperCase()}
@@ -35,14 +39,20 @@ const UserTable = ({ users }) => {
               <td className="p-2">
                 <span
                   className={`px-2 py-1 rounded text-xs font-semibold ${
-                    user.status === "active"
+                    user.status === "pending"
+                      ? "bg-yellow-100 text-yellow-600"
+                      : user.status === "approved" && user.is_blocked === false
                       ? "bg-green-100 text-green-700"
                       : user.status === "approved" && user.is_blocked === true
                       ? "bg-red-100 text-red-600"
                       : "bg-gray-100 text-gray-600"
                   }`}
                 >
-                  {user.status}
+                  {user.status === "approved" && user.is_blocked === false
+                    ? "active"
+                    : user.status === "approved" && user.is_blocked === true
+                    ? "Blocked"
+                    : "Pending"}
                 </span>
               </td>
               <td className="p-2">

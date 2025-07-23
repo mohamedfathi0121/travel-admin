@@ -13,6 +13,7 @@ export default function Header() {
   return (
     <header className="w-full  bg-background shadow-md z-50 relative border-b border-gray-300">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 md:px-8 py-4">
+<<<<<<< HEAD
         <Link
           to="/"
           className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap"
@@ -33,6 +34,24 @@ export default function Header() {
          
           {user && (
             <>
+=======
+        <h1 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
+          AdventureCo
+        </h1>
+        <ul className="flex w-100 justify-start gap-4 hidden md:flex space-x-6 ml-6 text-sm font-medium text-text-primary">
+          {user && (
+            <>
+              <li className="display flex items-center flex-column">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? activeClassName : "hover:text-button-primary"
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
               <li>
                 <NavLink
                   to="companies"
@@ -40,7 +59,11 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
+<<<<<<< HEAD
                    companies
+=======
+                  companies
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
                 </NavLink>
               </li>
               <li>
@@ -50,7 +73,11 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
+<<<<<<< HEAD
                  customers
+=======
+                  customers
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
                 </NavLink>
               </li>
               <li>
@@ -60,10 +87,16 @@ export default function Header() {
                     isActive ? activeClassName : "hover:text-button-primary"
                   }
                 >
+<<<<<<< HEAD
                  chats
                 </NavLink>
               </li>
               
+=======
+                  chats
+                </NavLink>
+              </li>
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
             </>
           )}
         </ul>
@@ -129,7 +162,11 @@ export default function Header() {
               </NavLink>
             </>
           )}
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
           {!user && (
             <>
               <NavLink
@@ -153,7 +190,11 @@ export default function Header() {
           )}
 
           <ThemeSwitcher />
+<<<<<<< HEAD
                {user && (
+=======
+          {user && (
+>>>>>>> 8eb48154bf96a0aee9c1633a97dc11cf8db54601
             <button
               onClick={() => {
                 signOut();
