@@ -34,7 +34,7 @@ function App() {
 
                   <Route path="/companies/:id" element={<CompanyProfile />} />
                   <Route path="users" element={<UsersPage />} />
-                  <Route path="profile" element={<UserProfile />} />
+                  <Route path="users/:id" element={<UserProfile />} />
                 </Route>
               </Route>
               <Route path="/*" element={<NotFoundPage />} />

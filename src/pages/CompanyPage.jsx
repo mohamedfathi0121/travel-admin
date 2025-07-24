@@ -11,42 +11,67 @@ const CompanyPage = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Fetch users based on filter rules
-const fetchUsers = async () => {
-  setLoading(true);
+  // ✅ Fetch companies based on filter rules
+  const fetchUsers = async () => {
+    setLoading(true);
 
-  let query = supabase.from("companies").select("*"); // ✅ Don't await here
+    let query = supabase.from("companies").select("*");
 
-  if (filter === "new") {
-    query = query.eq("status", "pending");
-  } else if (filter === "active") {
-    query = query.eq("status", "approved").eq("is_blocked", false);
-  } else if (filter === "blocked") {
-    query = query.eq("status", "approved").eq("is_blocked", true);
-  }
-  // "all" → no extra filter
+    if (filter === "new") {
+      query = query.eq("status", "pending");
+    } else if (filter === "active") {
+      query = query.eq("status", "approved").eq("is_blocked", false);
+    } else if (filter === "blocked") {
+      query = query.eq("status", "approved").eq("is_blocked", true);
+    }
+    // "all" → no extra filter
 
-  const { data, error } = await query.order("created_at", { ascending: false }); // ✅ Await only here
+    const { data, error } = await query.order("created_at", {
+      ascending: false,
+    });
 
-  if (error) {
-    console.error("Error fetching users:", error);
-  } else {
-    setUsers(data || []);
-    console.log(data);
-  }
+    if (error) {
+      console.error("❌ Error fetching companies:", error);
+    } else {
+      setUsers(data || []);
+      console.log("✅ Fetched Companies:", data);
+    }
 
-  setLoading(false);
-};
+    setLoading(false);
+  };
 
   useEffect(() => {
     fetchUsers();
+
+    // ✅ Setup Realtime Listener for INSERT, UPDATE, DELETE
+    const channel = supabase
+      .channel("companies-realtime")
+      .on(
+        "postgres_changes",
+        {
+          event: "*", // INSERT, UPDATE, DELETE
+          schema: "public",
+          table: "companies",
+        },
+        (payload) => {
+          console.log("🔄 Realtime change detected:", payload);
+          fetchUsers(); // ✅ Refetch list after every change
+        }
+      )
+      .subscribe((status) =>
+        console.log("✅ Realtime subscription status:", status)
+      );
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [filter]);
 
   return (
     <div className="p-6 bg-background min-h-[calc(100vh-130px)] text-text-primary">
-      <h1 className="text-2xl font-bold mb-4">Users</h1>
+      <h1 className="text-2xl font-bold mb-4">Companies</h1>
 
-      {/* Filter Buttons */}
+      {/* ✅ Filter Buttons */}
       <div className="flex gap-4 mb-6 border-b border-header-background">
         {["all", "new", "active", "blocked"].map((status) => (
           <button
@@ -65,10 +90,12 @@ const fetchUsers = async () => {
         ))}
       </div>
 
-      {/* Users Table */}
+      {/* ✅ Companies Table */}
       {loading ? (
         <ProfilePageSkeleton />
-      ) : users.length === 0 ? <p className="text-text-secondary">No users found.</p> :  (
+      ) : users.length === 0 ? (
+        <p className="text-text-secondary">No companies found.</p>
+      ) : (
         <UserTable users={users} />
       )}
     </div>

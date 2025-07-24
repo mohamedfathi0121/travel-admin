@@ -2,3 +2,8 @@
 [functions.update-company-status]
 entrypoint = "./functions/update-company-status/index.js"
 verify_jwt = false
+
+[functions.update-customer-status]
+entrypoint = "./functions/update-customer-status/index.js"
+verify_jwt = false
+

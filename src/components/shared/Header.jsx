@@ -13,9 +13,13 @@ export default function Header() {
   return (
     <header className="w-full  bg-background shadow-md z-50 relative border-b border-gray-300">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center px-4 md:px-8 py-4">
-        <h1 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
+        {!user && (<h1 className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
           AdventureCo
-        </h1>
+        </h1>)}
+        {user && (<Link to="/" className="text-xl md:text-2xl font-bold text-text-primary whitespace-nowrap">
+          AdventureCo
+        </Link>)}
+
         <ul className="flex w-100 justify-start gap-4 hidden md:flex space-x-6 ml-6 text-sm font-medium text-text-primary">
           {user && (
             <>
